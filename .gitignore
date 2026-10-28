@@ -16,18 +16,22 @@ __pycache__/
 *$py.class
 *.so
 .Python
-env/
-venv/
-.venv/
-ENV/
-build/
+# Python virtualenvs & build artifacts
+/env/
+/venv/
+/.venv/
+/ENV/
+apps/api/.venv/
+apps/api/venv/
+apps/api/env/
+apps/api/build/
+apps/api/dist/
+apps/api/lib/
+apps/api/lib64/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
@@ -35,6 +39,9 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# Ensure all frontend source files are tracked
+!apps/web/src/**
 
 # Testing & Coverage
 .pytest_cache/

@@ -2,7 +2,7 @@
 
 from functools import lru_cache
 
-from pydantic import Field
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -28,6 +28,16 @@ class Settings(BaseSettings):
         description="PostgreSQL database connection URL",
     )
 
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def normalize_database_url(cls, v: str) -> str:
+        if isinstance(v, str):
+            if v.startswith("postgres://"):
+                return "postgresql+psycopg://" + v[len("postgres://"):]
+            if v.startswith("postgresql://") and not v.startswith("postgresql+"):
+                return "postgresql+psycopg://" + v[len("postgresql://"):]
+        return v
+
     # Supabase Auth & Storage
     SUPABASE_URL: str = "https://your-project.supabase.co"
     SUPABASE_ANON_KEY: str = "anon-key-placeholder"
@@ -40,6 +50,7 @@ class Settings(BaseSettings):
 
     # CORS
     FRONTEND_ORIGINS: str = "http://localhost:3000,http://127.0.0.1:3000"
+    FRONTEND_ORIGIN_REGEX: str | None = None
 
     # OpenRouter AI Gateway
     OPENROUTER_API_KEY: str = "openrouter-placeholder"

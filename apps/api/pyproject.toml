@@ -23,6 +23,7 @@ dependencies = [
     "pyjwt[crypto]>=2.8.0",
     "python-multipart>=0.0.9",
     "pypdf>=4.2.0",
+    "certifi>=2024.0.0",
 ]
 
 [project.optional-dependencies]

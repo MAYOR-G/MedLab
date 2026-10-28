@@ -40,15 +40,23 @@ def create_application() -> FastAPI:
         lifespan=lifespan,
     )
 
+    allow_origin_regex = (
+        settings.FRONTEND_ORIGIN_REGEX
+        if settings.FRONTEND_ORIGIN_REGEX
+        else (
+            r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$"
+            if settings.APP_ENV != "production"
+            else None
+        )
+    )
+
     # Middleware execution order (bottom-to-top on request, top-to-bottom on response)
     application.add_middleware(SecurityHeadersMiddleware)
     application.add_middleware(RequestLoggingMiddleware)
     application.add_middleware(
         CORSMiddleware,
         allow_origins=settings.allowed_origins_list,
-        allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$"
-        if settings.APP_ENV != "production"
-        else None,
+        allow_origin_regex=allow_origin_regex,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
