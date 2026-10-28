@@ -1,0 +1,23 @@
+{
+  "name": "medlab-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MedLab — Secure Family Medical Records Vault & AI Health Assistant",
+  "workspaces": [
+    "apps/web",
+    "packages/api-contracts"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:api": "cd apps/api && source .venv/bin/activate && uvicorn app.main:app --reload --port 8000",
+    "dev:worker": "cd apps/api && source .venv/bin/activate && python -m app.workers.main",
+    "migrate": "cd apps/api && source .venv/bin/activate && alembic upgrade head",
+    "build:web": "npm run build --workspace=apps/web",
+    "lint:web": "npm run lint --workspace=apps/web",
+    "test:web": "npm run test --workspace=apps/web",
+    "generate:contracts": "bash scripts/generate-api-types.sh"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}

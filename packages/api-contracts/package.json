@@ -1,0 +1,13 @@
+{
+  "name": "@medlab/api-contracts",
+  "version": "1.0.0",
+  "description": "Auto-generated TypeScript contracts from FastAPI OpenAPI schema",
+  "main": "generated/api-types.ts",
+  "types": "generated/api-types.ts",
+  "scripts": {
+    "generate": "bash ../../scripts/generate-api-types.sh"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.4.3"
+  }
+}

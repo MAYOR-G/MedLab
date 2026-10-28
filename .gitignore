@@ -1,0 +1,68 @@
+# Node / Next.js
+node_modules/
+.next/
+out/
+build/
+dist/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+.vitest/
+
+# Linters / Type Checkers
+.ruff_cache/
+.mypy_cache/
+
+# Environment Variables & Secrets (CRITICAL: Never commit secrets)
+.env
+.env*.local
+.env.development
+.env.test
+.env.production
+!.env.example
+
+# IDE & OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Database & Migrations scratch
+*.sqlite3
+*.db
